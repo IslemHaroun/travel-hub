@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     // Requête Neo4j pour les recommandations
     const recommendations = await req.neoService.getRecommendations(
       city, 
-      parseInt(k)
+      parseInt(k) // ← S'assurer que c'est un entier
     );
 
     res.json({

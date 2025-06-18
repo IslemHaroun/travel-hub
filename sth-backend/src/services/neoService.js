@@ -1,3 +1,6 @@
+
+const neo4j = require('neo4j-driver'); // ← Ajouter cette ligne en haut
+
 class Neo4jService {
     constructor(driver) {
       this.driver = driver;
@@ -11,7 +14,10 @@ class Neo4jService {
            RETURN n.code AS city, n.name AS name, n.weight AS score 
            ORDER BY n.weight DESC 
            LIMIT $k`,
-          { city: cityCode, k: k }
+          { 
+            city: cityCode, 
+            k: neo4j.int(k) // ← Conversion explicite en entier Neo4j
+          }
         );
   
         return result.records.map(record => ({
@@ -32,7 +38,10 @@ class Neo4jService {
            RETURN n.code AS city 
            ORDER BY n.weight DESC 
            LIMIT $limit`,
-          { city: cityCode, limit }
+          { 
+            city: cityCode, 
+            limit: neo4j.int(limit) // ← Même correction ici
+          }
         );
   
         return result.records.map(record => record.get('city'));

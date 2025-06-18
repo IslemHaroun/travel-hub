@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/offers', offersRoutes);
-app.use('/login', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/reco', recoRoutes);
 
 // Route de santé

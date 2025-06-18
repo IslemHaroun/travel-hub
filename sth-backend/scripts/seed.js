@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Offer = require('../src/models/offer');
 
 const sampleOffers = [
+  // Offres PAR -> TYO
   {
     from: "PAR",
     to: "TYO",
@@ -31,6 +32,47 @@ const sampleOffers = [
     ],
     hotel: { name: "Business Hotel Tokyo", nights: 10, price: 800 }
   },
+  
+  // Offres depuis villes proches de Paris (LON, ROM, MAD) vers TYO
+  {
+    from: "LON",
+    to: "TYO",
+    departDate: new Date("2025-07-16"),
+    returnDate: new Date("2025-07-26"),
+    provider: "British Air",
+    price: 720.00,
+    currency: "EUR",
+    legs: [
+      { flightNum: "BA001", dep: "LHR", arr: "NRT", duration: 710 }
+    ],
+    hotel: { name: "Tokyo Central Hotel", nights: 10, price: 900 }
+  },
+  {
+    from: "ROM",
+    to: "TYO",
+    departDate: new Date("2025-07-17"),
+    returnDate: new Date("2025-07-27"),
+    provider: "Alitalia",
+    price: 780.00,
+    currency: "EUR",
+    legs: [
+      { flightNum: "AZ901", dep: "FCO", arr: "NRT", duration: 750 }
+    ]
+  },
+  {
+    from: "MAD",
+    to: "TYO", 
+    departDate: new Date("2025-07-18"),
+    returnDate: new Date("2025-07-28"),
+    provider: "Iberia",
+    price: 690.00,
+    currency: "EUR",
+    legs: [
+      { flightNum: "IB505", dep: "MAD", arr: "NRT", duration: 730 }
+    ]
+  },
+
+  // Autres destinations
   {
     from: "LON",
     to: "NYC",
@@ -47,21 +89,35 @@ const sampleOffers = [
 
 async function seedDatabase() {
   try {
+    console.log('🔗 Connexion à MongoDB...');
     await mongoose.connect(
       process.env.MONGODB_URI || 'mongodb://admin:password@localhost:27017/travel_hub?authSource=admin'
     );
     
-    console.log('🔗 Connexion MongoDB établie');
+    console.log('✅ MongoDB connecté');
+    
+    // Compter les offres actuelles
+    const currentCount = await Offer.countDocuments();
+    console.log(`📊 Offres actuelles: ${currentCount}`);
     
     // Supprimer les anciennes données
-    await Offer.deleteMany({});
-    console.log('🧹 Anciennes données supprimées');
+    const deleted = await Offer.deleteMany({});
+    console.log(`🧹 ${deleted.deletedCount} offres supprimées`);
     
     // Insérer les nouvelles données
-    await Offer.insertMany(sampleOffers);
-    console.log('✅ Données de test insérées');
+    const inserted = await Offer.insertMany(sampleOffers);
+    console.log(`✅ ${inserted.length} nouvelles offres insérées`);
     
-    console.log(`📊 ${sampleOffers.length} offres créées`);
+    // Vérifier
+    const newCount = await Offer.countDocuments();
+    console.log(`📊 Total final: ${newCount} offres`);
+    
+    // Afficher quelques exemples
+    console.log('\n📋 Exemples d\'offres:');
+    const examples = await Offer.find().limit(3).select('from to provider price');
+    examples.forEach((offer, i) => {
+      console.log(`  ${i+1}. ${offer.from} → ${offer.to} - ${offer.provider} (${offer.price}€)`);
+    });
     
   } catch (error) {
     console.error('❌ Erreur:', error);

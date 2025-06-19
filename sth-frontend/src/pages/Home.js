@@ -88,13 +88,13 @@ const Home = () => {
                   </div>
                 </div>
                 
-                <button
-                  type="submit"
-                  className="w-full mt-6 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
-                >
-                  <Search className="h-5 w-5" />
-                  <span>Rechercher des offres</span>
-                </button>
+<button
+  type="submit"
+  className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+>
+  <Search className="h-5 w-5" />
+  <span>Rechercher des offres</span>
+</button>
               </form>
             </div>
           </div>

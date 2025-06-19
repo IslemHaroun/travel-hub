@@ -77,7 +77,7 @@ const Home = () => {
                       Nombre de résultats
                     </label>
                     <select
-                      className="input-field text-gray-900"
+                      className="input-field text-gray-900 p-2 rounded"
                       value={searchForm.limit}
                       onChange={(e) => setSearchForm({...searchForm, limit: parseInt(e.target.value)})}
                     >

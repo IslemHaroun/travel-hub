@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, Clock, Star } from 'lucide-react';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Clock, MapPin, Search} from 'lucide-react';
 import imgAccueil from '../assets/images/img_accueil.jpg';
 
 const Home = () => {

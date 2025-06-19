@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Clock, Star } from 'lucide-react';
+import imgAccueil from '../assets/images/img_accueil.jpg';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,7 +30,13 @@ const Home = () => {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+      <section className="relative bg-gradient-to-r from-primary-600 to-primary-700 text-white"
+       style={{
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imgAccueil})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }}>
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
@@ -88,13 +95,13 @@ const Home = () => {
                   </div>
                 </div>
                 
-<button
-  type="submit"
-  className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
->
-  <Search className="h-5 w-5" />
-  <span>Rechercher des offres</span>
-</button>
+                  <button
+                    type="submit"
+                    className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                  >
+                    <Search className="h-5 w-5" />
+                    <span>Rechercher des offres</span>
+                  </button>
               </form>
             </div>
           </div>

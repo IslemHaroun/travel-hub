@@ -1,5 +1,24 @@
-version: '3.8'
 services:
+  frontend:
+    build:
+      context: ./sth-frontend
+    volumes:
+      - ./sth-frontend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./sth-backend
+    volumes:
+      - ./sth-backend:/app
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo:7
     ports:

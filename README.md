@@ -74,13 +74,13 @@ PORT=3000
 NODE_ENV=development
 
 # MongoDB
-MONGODB_URI=mongodb://admin:password@localhost:27017/travel_hub?authSource=admin
+MONGODB_URI=mongodb://admin:password@mongodb:27017/travel_hub?authSource=admin
 
 # Redis
-REDIS_URI=redis://localhost:6379
+REDIS_URI=redis://redis:6379
 
 # Neo4j
-NEO4J_URI=bolt://localhost:7687
+NEO4J_URI=bolt://neo4j:7687
 NEO4J_PASSWORD=password
 ```
 Note pour accèder au données mongo compass ajouter le lien suivant : mongodb://admin:password@localhost:27017/?authSource=admin

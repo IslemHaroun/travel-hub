@@ -83,6 +83,7 @@ REDIS_URI=redis://localhost:6379
 NEO4J_URI=bolt://localhost:7687
 NEO4J_PASSWORD=password
 ```
+Note pour accèder au données mongo compass ajouter le lien suivant : mongodb://admin:password@localhost:27017/?authSource=admin
 
 ### 4. Lancer les services Docker
 
